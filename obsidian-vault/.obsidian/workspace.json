@@ -1,0 +1,209 @@
+{
+  "main": {
+    "id": "823fd91b984bc29b",
+    "type": "split",
+    "children": [
+      {
+        "id": "293eb6964b0605ae",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f316c86b0d192c47",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "pdfs/doc-ad56065d-ddfe-4044-b55f-fb5545640689.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "doc-ad56065d-ddfe-4044-b55f-fb5545640689"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "76dedbd231f4ec92",
+    "type": "split",
+    "children": [
+      {
+        "id": "c72863c33d2da25a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9875eb0e3e43c730",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "57e0346d9482567e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "c0c7a2f0eda9bfac",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5b361db77e53b2f1",
+    "type": "split",
+    "children": [
+      {
+        "id": "c5ea7cf4d5d493ef",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1c5b3e86b113a9e6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "b362ee36e238b0f2",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "f45ea767bbef66f5",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "b69ef6ae6ac13c30",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "9875eb0e3e43c730",
+  "lastOpenFiles": [
+    "pdfs/doc-ad56065d-ddfe-4044-b55f-fb5545640689.pdf",
+    "pdfs/doc-37fe4117-45b2-4876-96ee-fccbcbd68d53.pdf",
+    "pdfs/doc-24d14d20-4778-4106-840a-89ad2272d4e2.pdf",
+    "pdfs/doc-6e393cbb-d15e-4d29-a3c8-67336ade100e.pdf",
+    "venezia_-_il_gazzettino_20251016_154709.md",
+    "sportscom_live_on-demand_sports_streaming_20251016_155112.md",
+    "miniclip_20251016_154633.md",
+    "leeds_sports_physio_leeds_physiotherapist_-_david__20251016_155040.md",
+    "la_repubblica_-_news_in_tempo_reale_-_le_notizie_e_20251016_154559.md",
+    "dora_capabilities_test_automation_20251008_113657.md",
+    "pdfs/doc-7e14bd56-b68f-4283-a6f3-6df1131ec182.pdf",
+    "claude_code_-_obsidian_publish_20251008_104154.md",
+    "2025-10-08.md",
+    "Untitled 1.canvas",
+    "Untitled 2.canvas",
+    "Untitled.canvas",
+    "crispin_orthotics_-_specialists_in_modern_orthotic_20251008_105301.md",
+    "libero_mail_ricerca_e_news_con_aggiornamento_quoti_20251008_110349.md",
+    "la_repubblica_-_news_in_tempo_reale_-_le_notizie_e_20251008_104102.md",
+    "adding_document_understanding_to_claude_code_llama_20251008_113827.md",
+    "a_postmortem_of_three_recent_issues_anthropic_20251008_113717.md",
+    "pdfs/doc-51a42afb-27ea-407c-89cf-58678051e870.pdf",
+    "pdfs/doc-ee87c0a4-a60c-4912-92d5-ddfd29b23525.pdf",
+    "pdfs/doc-093fcb27-99e0-4fd9-9e48-0575d8743f49.pdf",
+    "pdfs/doc-4f7df2be-8c8f-47f3-8bfc-3776393c9601.pdf",
+    "la_repubblica_-_news_in_tempo_reale_-_le_notizie_e_20251007_142348.md",
+    "techcrunch_startup_and_technology_news_20251006_145522.md",
+    "register_free_-_youporncom_20251007_085140.md",
+    "microdosing_trt_the_future_of_testosterone_replace_20251007_100559.md",
+    "la_repubblica_-_news_in_tempo_reale_-_le_notizie_e_20251007_085718.md",
+    "pdfs/doc-86ae5794-a1cf-4f1c-b8ac-308a60b7cfde.pdf",
+    "pdfs/doc-7ef67bc8-5a39-407d-8736-d5df362295a3.pdf",
+    "techcrunch_startup_and_technology_news_20251006_144539.md",
+    "techcrunch_startup_and_technology_news_20251006_144057.md",
+    "techcrunch_startup_and_technology_news_20251006_143733.md",
+    "techcrunch_startup_and_technology_news_20251006_143129.md",
+    "techcrunch_startup_and_technology_news_20251006_142630.md",
+    "techcrunch_startup_and_technology_news_20251006_142325.md",
+    "techcrunch_startup_and_technology_news_20251006_141942.md"
+  ]
+}

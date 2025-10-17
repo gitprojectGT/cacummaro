@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${appName} + ' - Welcome'">Cacummaro - Welcome</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .logo-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .logo-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .logo-btn:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            background: #f8f9ff;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #e1e5f7;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .url-input-container {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .url-input {
+            padding: 0.8rem;
+            border: 2px solid #e1e5f7;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .ingest-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .ingest-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .ingest-btn:active {
+            transform: translateY(0);
+        }
+
+        .ingest-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .ingest-status {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            min-height: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ingest-status.success {
+            background: #e8f5e8;
+            color: #2e7d2e;
+            border: 1px solid #4caf50;
+        }
+
+        .ingest-status.error {
+            background: #ffeaea;
+            color: #d32f2f;
+            border: 1px solid #f44336;
+        }
+
+        .ingest-status.loading {
+            background: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #2196f3;
+        }
+
+        .actions {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .status {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            border-radius: 10px;
+            color: #2e7d2e;
+        }
+
+        .status-icon {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #4caf50;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .footer {
+            margin-top: 2rem;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
+    <script>
+        function showWelcomeMessage() {
+            const messages = [
+                "🎉 Welcome to Cacummaro!",
+                "🏔️ Reaching the peak of document organization!",
+                "📄 Ready to convert some web pages?",
+                "🚀 Let's build your knowledge base!",
+                "✨ From cacumen (peak) - aim high!"
+            ];
+
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+            // Create and show a temporary message
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 25px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                z-index: 1000;
+                font-weight: 600;
+                animation: slideDown 0.3s ease-out;
+            `;
+            messageDiv.textContent = randomMessage;
+
+            // Add animation keyframes
+            if (!document.getElementById('welcome-animation')) {
+                const style = document.createElement('style');
+                style.id = 'welcome-animation';
+                style.textContent = `
+                    @keyframes slideDown {
+                        from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+                        to { transform: translateX(-50%) translateY(0); opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            document.body.appendChild(messageDiv);
+
+            // Remove message after 3 seconds
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.style.animation = 'slideDown 0.3s ease-out reverse';
+                    setTimeout(() => {
+                        if (messageDiv.parentNode) {
+                            messageDiv.parentNode.removeChild(messageDiv);
+                        }
+                    }, 300);
+                }
+            }, 3000);
+        }
+
+        async function ingestUrl() {
+            const urlInput = document.getElementById('urlInput');
+            const ingestBtn = document.querySelector('.ingest-btn');
+            const statusDiv = document.getElementById('ingestStatus');
+
+            const url = urlInput.value.trim();
+
+            // Validate URL
+            if (!url) {
+                showStatus('Please enter a URL', 'error');
+                return;
+            }
+
+            try {
+                new URL(url); // This will throw if URL is invalid
+            } catch (e) {
+                showStatus('Please enter a valid URL', 'error');
+                return;
+            }
+
+            // Show loading state
+            ingestBtn.disabled = true;
+            ingestBtn.textContent = 'Processing...';
+
+            // Step-by-step progress tracking
+            const steps = [
+                { message: '🔍 Step 1: Verifying URL accessibility...', delay: 500 },
+                { message: '📄 Step 2: Converting web page to PDF...', delay: 2000 },
+                { message: '💾 Step 3: Storing in CouchDB with UUID...', delay: 1500 },
+                { message: '🤖 Step 4: Analyzing PDF content...', delay: 1000 },
+                { message: '🏷️ Step 5: Categorizing document...', delay: 800 }
+            ];
+
+            let currentStep = 0;
+
+            // Function to show progress steps
+            function showProgressStep() {
+                if (currentStep < steps.length) {
+                    showStatus(steps[currentStep].message, 'loading');
+                    currentStep++;
+                    setTimeout(showProgressStep, steps[currentStep - 1].delay);
+                }
+            }
+
+            // Start progress simulation
+            showProgressStep();
+
+            try {
+                const response = await fetch('/api/v1/ingest', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        url: url,
+                        options: {
+                            createObsidianNote: true,
+                            noteMetaTag: 'data-note'
+                        }
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Wait for all steps to complete before showing success
+                    setTimeout(() => {
+                        showSuccessResult(result);
+                        urlInput.value = ''; // Clear the input
+                    }, Math.max(0, steps.reduce((acc, step) => acc + step.delay, 0) - Date.now() + performance.now()));
+                } else {
+                    showStatus(`❌ Error: ${result.message || 'Failed to process URL'}`, 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showStatus('❌ Network error. Please try again.', 'error');
+            } finally {
+                // Reset button state after all steps
+                setTimeout(() => {
+                    ingestBtn.disabled = false;
+                    ingestBtn.textContent = 'Convert';
+                }, Math.max(6000, steps.reduce((acc, step) => acc + step.delay, 0)));
+            }
+        }
+
+        function showSuccessResult(result) {
+            const statusDiv = document.getElementById('ingestStatus');
+
+            // Create detailed success message
+            const successHtml = `
+                <div style="text-align: left; line-height: 1.4;">
+                    <div style="font-weight: bold; color: #2e7d2e; margin-bottom: 0.5rem;">
+                        ✅ Successfully Processed!
+                    </div>
+                    <div style="font-size: 0.75rem; color: #666;">
+                        📋 Document ID: <code style="background: #f0f0f0; padding: 2px 4px; border-radius: 3px;">${result.id}</code><br>
+                        🗃️ Stored in CouchDB with UUID<br>
+                        🏷️ Category: <span style="background: #e3f2fd; color: #1976d2; padding: 2px 6px; border-radius: 10px; font-size: 0.7rem;">Auto-detected</span><br>
+                        📝 Obsidian note created
+                    </div>
+                </div>
+            `;
+
+            statusDiv.innerHTML = successHtml;
+            statusDiv.className = 'ingest-status success';
+
+            // Add PDF download link
+            setTimeout(() => {
+                const downloadLink = document.createElement('a');
+                downloadLink.href = result.pdfUrl;
+                downloadLink.textContent = '📄 Download PDF';
+                downloadLink.className = 'btn btn-secondary';
+                downloadLink.style.marginTop = '0.5rem';
+                downloadLink.style.display = 'inline-block';
+                downloadLink.style.fontSize = '0.75rem';
+                downloadLink.style.padding = '0.4rem 1rem';
+                downloadLink.style.textDecoration = 'none';
+
+                statusDiv.appendChild(document.createElement('br'));
+                statusDiv.appendChild(downloadLink);
+            }, 1000);
+        }
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('ingestStatus');
+            statusDiv.textContent = message;
+            statusDiv.className = `ingest-status ${type}`;
+        }
+
+        // Allow Enter key to submit
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlInput = document.getElementById('urlInput');
+            urlInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    ingestUrl();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <button class="logo-btn" onclick="showWelcomeMessage()" title="Click me!">🏔️</button>
+        <h1 th:text="${appName}">Cacummaro</h1>
+        <p class="subtitle" th:text="${description}">Web PDF Ingest & Categorization Application</p>
+
+        <div class="features">
+            <div class="feature url-input-feature">
+                <div class="feature-icon">📄</div>
+                <h3>Web to PDF</h3>
+                <div class="url-input-container">
+                    <input type="url" id="urlInput" placeholder="Enter URL (e.g., https://example.com)" class="url-input">
+                    <button onclick="Can you()" class="ingest-btn">Convert</button>
+                </div>
+                <div id="ingestStatus" class="ingest-status"></div>
+            </div>
+
+            <div class="feature" onclick="window.location.href='/graph'" style="cursor: pointer;">
+                <div class="feature-icon">🔍</div>
+                <h3>Smart Classification</h3>
+                <p>Automatic document categorization with ML support</p>
+                <div style="margin-top: 0.5rem;">
+                    <span style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.75rem; font-weight: 600;">View Graph →</span>
+                </div>
+            </div>
+
+            <a href="/obsidian" style="text-decoration: none; color: inherit;">
+                <div class="feature">
+                    <div class="feature-icon">📝</div>
+                    <h3>Obsidian Integration</h3>
+                    <p>Generate markdown notes with metadata</p>
+                </div>
+            </a>
+
+            <div class="feature">
+                <div class="feature-icon">🔐</div>
+                <h3>Secure & Robust</h3>
+                <p>SSRF protection, validation, and error handling</p>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="/api/v1" class="btn btn-primary">🚀 Explore API</a>
+            <a href="/actuator/health" class="btn btn-secondary">🩺 Health Check</a>
+            <a href="http://localhost:5984/_utils/" target="_blank" class="btn btn-secondary">📊 CouchDB Admin</a>
+        </div>
+
+        <div class="status">
+            <span class="status-icon"></span>
+            <strong>Status:</strong> Application is running successfully
+            <br>
+            <small>Version: <span th:text="${version}">1.0-SNAPSHOT</span> • Java 11 • Spring Boot 2.7.18</small>
+        </div>
+
+        <div class="footer">
+            <p>
+                📚 <a href="https://github.com/cacummaro/cacummaro">Documentation</a> •
+                🐛 <a href="https://github.com/cacummaro/cacummaro/issues">Report Issues</a>
+            </p>
+            <p><strong>Cacummaro</strong> - From Latin "cacumen" (peak) - reaching the peak of document organization!</p>
+        </div>
+    </div>
+</body>
+</html>

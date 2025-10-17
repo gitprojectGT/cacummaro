@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  couchdb:
+    image: couchdb:3.3
+    container_name: cacummaro-couchdb
+    ports:
+      - "5984:5984"
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=password
+    volumes:
+      - couchdb_data:/opt/couchdb/data
+    networks:
+      - cacummaro-network
+
+
+volumes:
+  couchdb_data:
+
+networks:
+  cacummaro-network:
+    driver: bridge

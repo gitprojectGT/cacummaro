@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: cacummaro
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      adjust-dates-to-context-time-zone: false
+    modules: com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+
+server:
+  port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
+
+cacummaro:
+  couchdb:
+    host: localhost
+    port: 5984
+    database: cacummaro_docs
+    username: admin
+    password: password
+    protocol: http
+
+  pdf:
+    timeout: 30s
+    max-page-size: 10MB
+
+  obsidian:
+    vault-path: ./obsidian-vault
+    enabled: true
+
+  classification:
+    confidence-threshold: 0.7
+    ml:
+      enabled: true
+      confidence-threshold: 0.6
+      model-path: ./ml-model.json
+      min-document-frequency: 2
+      max-features: 1000
+a
+  mcp:
+    enabled: false
+    server-url: http://localhost:3000
+    timeout-ms: 30000
+    tool-name: classify_document
+
+  security:
+    allowed-domains: []  # Empty means all external domains allowed
+    blocked-internal-ips: true
+
+  ingestion:
+    max-concurrent: 5
+    retry-attempts: 3
+    retry-delay: 5s
+
+logging:
+  level:
+    org.cacummaro: DEBUG
+    org.ektorp: INFO
