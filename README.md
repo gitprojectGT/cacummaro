@@ -1,6 +1,8 @@
 # Cacummaro - Web PDF Ingest & Categorization Application
 
-A comprehensive Java application for ingesting web pages, converting them to PDF, extracting metadata, classifying documents, and integrating with Obsidian for knowledge management.
+**Cacummaro - From Latin "cacumen" (peak, summit) - reaching the peak of document organization!**
+
+**A comprehensive Java application for ingesting web pages, converting them to PDF, extracting metadata, classifying documents, and integrating with Obsidian for knowledge management.**
 
 ##  Features
 
@@ -506,7 +508,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Cacummaro** - From Latin "cacumen" (peak, summit) - reaching the peak of document organization! 
+
 
 ##  Debugging (Windows)
 
